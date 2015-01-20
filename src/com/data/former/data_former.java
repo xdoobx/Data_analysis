@@ -21,7 +21,7 @@ public class data_former {
 	public static String[] sep_code(String content){
 		String[] result = new String[2];
 		content = content.replaceAll("\\\\n", " ");
-		result[0] = content.replaceAll("(?s)<code>.*?</code>", "");
+		result[0] = content.replaceAll("(?s)<code>.*?</code>", " ");
 		result[1] = "";
 		int pos1 = content.indexOf("<code>");
 		int pos2 = content.indexOf("</code>",pos1);
@@ -34,7 +34,7 @@ public class data_former {
 			
 		
 		result[0] = result[0].replaceAll("</p>", " ");
-		result[0] = result[0].replaceAll("(?s)<.*?>", "");
+		result[0] = result[0].replaceAll("(?s)<.*?>", " ");
 		return result;
 		
 	}
@@ -87,7 +87,7 @@ public class data_former {
 			
 			file_out.write("question,");
 			qsplit = qline.split("\t");
-			title = qsplit[14].replace(',', ' ').replaceAll("(?s)<.*?>", "");
+			title = qsplit[14].replace(',', ' ').replaceAll("(?s)<.*?>", " ");
 			content_sep = sep_code(qsplit[15].replace(',',' '));
 			file_out.write(title+','+qsplit[15].replace(',', ' ')+','+content_sep[0]+','+content_sep[1]+','+qsplit[9]+','+qsplit[1]+','
 					+qsplit[6]+','+qsplit[9]+','+qsplit[12]+','+qsplit[7]+'\n');
