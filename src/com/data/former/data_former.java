@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class data_former {
 	
-	public static String file_path = "C:/Users/lyihan/Yihan/Spring2015/Sharon/Stack_data/";
+	public static String file_path = "D:/ASU2015Spring/Sharon/Stack_data/";
 	public static String in_qfile_name;
 	public static String in_afile_name;
 	public static String out_file_name;
@@ -20,7 +20,7 @@ public class data_former {
 	
 	public static String[] sep_code(String content){
 		String[] result = new String[2];
-		content = content.replaceAll("\\\\n", " ");
+		content = content.toLowerCase().replaceAll("\\\\n", " ");
 		result[0] = content.replaceAll("(?s)<code>.*?</code>", " ");
 		result[1] = "";
 		int pos1 = content.indexOf("<code>");
@@ -32,7 +32,6 @@ public class data_former {
 			pos2 = content.indexOf("</code>", pos1);
 		}
 			
-		
 		result[0] = result[0].replaceAll("</p>", " ");
 		result[0] = result[0].replaceAll("(?s)<.*?>", " ");
 		return result;
@@ -80,7 +79,7 @@ public class data_former {
 				lines = 0;
 				++cur_file;
 				file_out.close();
-				out_file_name = file_path+"formed_data/01_01_2013-12_31_2013["+cur_file+"].csv";
+				out_file_name = file_path+"formed_data/01_01_2014-12_31_2014["+cur_file+"].csv";
 				file_out = new FileWriter(out_file_name);
 				file_out.write("type,title,content,text,code,user_id,time,vote,reputation,accept_rate,tag\n");
 			}
@@ -90,17 +89,18 @@ public class data_former {
 			title = qsplit[14].replace(',', ' ').replaceAll("(?s)<.*?>", " ");
 			content_sep = sep_code(qsplit[15].replace(',',' '));
 			file_out.write(title+','+qsplit[15].replace(',', ' ')+','+content_sep[0]+','+content_sep[1]+','+qsplit[9]+','+qsplit[1]+','
-					+qsplit[6]+','+qsplit[9]+','+qsplit[12]+','+qsplit[7]+'\n');
+					+qsplit[6]+','+qsplit[10]+','+qsplit[12]+','+qsplit[7]+'\n');
 			
 			qid = qsplit[0];
 			++lines;
 			if(qsplit[3].equals("true"))
 				write_answer(qid, title, qsplit[7]);
+			file_out.flush();
 		}
 	}
 	
 	public static void main(String[] args) throws IOException{
-		out_file_name = file_path+"formed_data/01_01_2013-12_31_2013[1].csv";
+		out_file_name = file_path+"formed_data/01_01_2014-12_31_2014[1].csv";
 		file_out = new FileWriter(out_file_name);
 		file_out.write("type,title,content,text,code,user_id,time,vote,reputation,accept_rate,tag\n");
 		
@@ -110,10 +110,10 @@ public class data_former {
 			if(afile_in != null)
 				afile_in.close();
 			
-			in_qfile_name = file_path+"01_01_2013-12_31_2013q"+'['+i+"].xls";
+			in_qfile_name = file_path+"01_01_2014-12_31_2014q"+'['+i+"].xls";
 			qfile_in = new FileReader(in_qfile_name);
 
-			in_afile_name = file_path+"01_01_2013-12_31_2013a"+'['+i+"].xls";
+			in_afile_name = file_path+"01_01_2014-12_31_2014a"+'['+i+"].xls";
 			
 			match_data();
 		}
