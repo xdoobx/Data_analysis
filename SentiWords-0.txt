@@ -1,0 +1,24 @@
+class
+abstract
+implement
+superclass
+subclass
+super
+final
+multipl
+multi
+level
+inherit
+parent 
+extend 
+hierarchi
+object
+subclass
+constructor
+cast
+superclass
+instanceof
+abstract 
+is a
+ha a
+relationship

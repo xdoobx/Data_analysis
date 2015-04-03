@@ -26,7 +26,7 @@ public class countWords {
 		BufferedWriter bw = new BufferedWriter(fw_1);
 
 		// make the array of the words
-		String seedWords = "/Users/Piyush1/Documents/Projects/Sharon/Constructive Analysis/17thFeb2015/seedwords_stemmed.txt";
+		String seedWords = "seedwords_stemmed.txt";
 		BufferedReader br_1 = null;
 		String word = "";
 
@@ -42,7 +42,7 @@ public class countWords {
 			wordCount_temp.put(word, 0);
 		}
 
-		String csvFile = "/Users/Piyush1/Documents/Projects/Sharon/Constructive Analysis/17thFeb2015/stackoverflow_textonly_ps.csv";
+		String csvFile = "D:/ASU2015Spring/Sharon/Stack_data/formed_data/documents-export-2015-01-20/01_01_2014-12_31_2014[1].csv";
 		BufferedReader br = null;
 		String line = "";
 		StringBuilder sb = new StringBuilder();
@@ -57,9 +57,11 @@ public class countWords {
 
 		int count=0;
 		int flag = 0;
-
+		String[] line_split;
 		 
 		while ((line = br.readLine()) != null) {
+			line_split = line.split(",");
+			line = line_split[3];
 			StringBuilder sb_1 = new StringBuilder();
 			total = 0;
 			for(String key: wordList){
