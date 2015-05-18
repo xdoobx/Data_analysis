@@ -9,8 +9,12 @@ import java.io.IOException;
 
 public class data_former {
 	
+<<<<<<< HEAD
 	public static String file_path = "C:/Users/lyihan/Yihan/Spring2015/Sharon/Stack_data/Comment_data/";
 	//public static String corpus_path = "C:/Users/lyihan/Yihan/Spring2015/Sharon/Stack_data/qa_corpus/";
+=======
+	public static String file_path = "D:/ASU2015Spring/Sharon/Stack_data/";
+>>>>>>> origin/master
 	public static String in_qfile_name;
 	public static String in_afile_name;
 	public static String in_cfile_name;
@@ -25,7 +29,11 @@ public class data_former {
 	
 	public static String[] sep_code(String content){
 		String[] result = new String[2];
+<<<<<<< HEAD
 		content = content.toLowerCase();
+=======
+		content = content.toLowerCase().replaceAll("\\\\n", " ");
+>>>>>>> origin/master
 		result[0] = content.replaceAll("(?s)<code>.*?</code>", " ");
 		result[1] = "";
 		int pos1 = content.indexOf("<code>");
@@ -37,7 +45,12 @@ public class data_former {
 			pos2 = content.indexOf("</code>", pos1);
 		}
 			
+<<<<<<< HEAD
 		result[0] = result[0].substring(1, result[0].length()-1).replaceAll("(?s)<.*?>+|\\\\n+|\\\\r\\\\n+", " ");
+=======
+		result[0] = result[0].replaceAll("</p>", " ");
+		result[0] = result[0].replaceAll("(?s)<.*?>", " ");
+>>>>>>> origin/master
 		return result;
 		
 	}
@@ -113,17 +126,26 @@ public class data_former {
 			content_sep = sep_code(qsplit[15].replace(',',' '));
 			file_out.write(title+','+qsplit[15].replace(',', ' ')+','+content_sep[0]+','+content_sep[1]+','+qsplit[9]+','+qsplit[1]+','
 					+qsplit[6]+','+qsplit[10]+','+qsplit[12]+','+qsplit[7]+'\n');
+<<<<<<< HEAD
 			//corpus_out.write(title+"\n"+content_sep[0]);
 			//corpus_out.close();
+=======
+>>>>>>> origin/master
 			
 			//corpus_out = new FileWriter(corpus_file_name+"c_"+qsplit[4]+"_"+(qsplit[5].isEmpty()?0:1));
 			//corpus_out.write(content_sep[1]);
 			//corpus_out.close();
 			qid = qsplit[0];
 			++lines;
+<<<<<<< HEAD
 			write_comment(qid, title, qsplit[7]);
 			if(!qsplit[4].equals("0"))
 				write_answer(qid, title, qsplit[7], Integer.parseInt(qsplit[4]));
+=======
+			if(qsplit[3].equals("true"))
+				write_answer(qid, title, qsplit[7]);
+			file_out.flush();
+>>>>>>> origin/master
 		}
 		/*afile_in = new FileReader(in_afile_name);
 		BufferedReader abr = new BufferedReader(afile_in);
@@ -160,6 +182,7 @@ public class data_former {
 			if(cfile_in != null)
 				cfile_in.close();
 			
+<<<<<<< HEAD
 			if(i == 72)
 				break;
 			in_qfile_name = file_path+"01_01_2014-12_31_2014q"+'['+i+"].xls";
@@ -171,6 +194,12 @@ public class data_former {
 			in_cfile_name = file_path+"01_01_2014-12_31_2014c"+'['+i+"].xls";
 
 			cfile_in = new FileReader(in_cfile_name);
+=======
+			in_qfile_name = file_path+"01_01_2014-12_31_2014q"+'['+i+"].xls";
+			qfile_in = new FileReader(in_qfile_name);
+
+			in_afile_name = file_path+"01_01_2014-12_31_2014a"+'['+i+"].xls";
+>>>>>>> origin/master
 			
 			match_data();
 			++i;
